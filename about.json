@@ -2,7 +2,7 @@
   "name": "BeQuant Theme",
   "about_url": "https://bequant.dev",
   "about_url_text": "BeQuant",
-  "license_url": "https://github.com/your-username/bequant-air/blob/main/LICENSE",
+  "license_url": "https://github.com/bequant-dev/bequant-air/blob/main/LICENSE",
   "components": [
     "https://github.com/jordanvidrine/discourse-category-group-boxes.git",
     "https://github.com/discourse/discourse-clickable-topic.git",
