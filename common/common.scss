@@ -638,3 +638,116 @@ html body #main-outlet {
 .title-voting {
   padding-left: 14px;
 }
+
+// BeQuant Theme Toggle Styling
+.bequant-theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  
+  .theme-toggle-btn {
+    background: var(--tertiary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    
+    &:hover {
+      background: var(--tertiary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: all 0.2s ease;
+    }
+    
+    .sun-icon {
+      display: none;
+    }
+    
+    .moon-icon {
+      display: block;
+    }
+    
+    &.dark-mode {
+      .sun-icon {
+        display: block;
+      }
+      
+      .moon-icon {
+        display: none;
+      }
+    }
+  }
+}
+
+// BeQuant Branding Enhancements
+.d-header {
+  .title {
+    font-weight: 700;
+    color: var(--tertiary);
+  }
+}
+
+// Enhanced Material Design styling
+.btn-primary {
+  background: var(--tertiary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background: var(--tertiary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Enhanced form styling
+.form-control {
+  border-radius: 8px;
+  border: 2px solid var(--primary-low);
+  transition: all 0.2s ease;
+  
+  &:focus {
+    border-color: var(--tertiary);
+    box-shadow: 0 0 0 3px rgba(var(--tertiary-rgb), 0.1);
+  }
+}
+
+// Enhanced card styling
+.topic-list-item {
+  border-radius: 12px;
+  border: 1px solid var(--primary-low);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+}

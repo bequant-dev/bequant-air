@@ -1,7 +1,8 @@
 {
-  "name": "Air Theme",
-  "about_url": "https://meta.discourse.org/t/discourse-air-theme/197703",
-  "license_url": "https://github.com/discourse/discourse-air/blob/main/LICENSE",
+  "name": "BeQuant Theme",
+  "about_url": "https://bequant.dev",
+  "about_url_text": "BeQuant",
+  "license_url": "https://github.com/your-username/bequant-air/blob/main/LICENSE",
   "components": [
     "https://github.com/jordanvidrine/discourse-category-group-boxes.git",
     "https://github.com/discourse/discourse-clickable-topic.git",
@@ -11,32 +12,33 @@
     "serialize_topic_excerpts": true
   },
   "color_schemes": {
-    "air-light": {
-      "primary": "1c1c1c",
-      "secondary": "f9fcff",
-      "tertiary": "3877e5",
-      "quaternary": "7e8b93",
-      "header_background": "f9fcff",
-      "header_primary": "122b43",
-      "highlight": "e6cb37",
-      "danger": "d05454",
-      "success": "71bd9f",
+    "bequant-light": {
+      "primary": "212121",
+      "secondary": "fafafa",
+      "tertiary": "1976d2",
+      "quaternary": "757575",
+      "header_background": "ffffff",
+      "header_primary": "1976d2",
+      "highlight": "1976d2",
+      "danger": "d32f2f",
+      "success": "388e3c",
       "love": "c16ad7",
-      "selected": "e1ebfb"
+      "selected": "e3f2fd",
+      "hover": "f5f5f5"
     },
-    "air-dark": {
-      "primary": "e0e0e0",
-      "secondary": "2d2d2d",
-      "tertiary": "9a5cfd",
-      "quaternary": "71bd9f",
-      "header_background": "202020",
-      "header_primary": "e0e0e0",
-      "highlight": "9a5cfd",
-      "danger": "d05454",
-      "success": "71bd9f",
+    "bequant-dark": {
+      "primary": "f9fafb",
+      "secondary": "0f172a",
+      "tertiary": "38bdf8",
+      "quaternary": "9ca3af",
+      "header_background": "1f2937",
+      "header_primary": "38bdf8",
+      "highlight": "38bdf8",
+      "danger": "ef4444",
+      "success": "22c55e",
       "love": "c16ad7",
-      "selected": "2f0177",
-      "hover": "535353"
+      "selected": "1e3a8a",
+      "hover": "374151"
     }
   },
   "screenshots": ["screenshots/light.png", "screenshots/dark.png"]

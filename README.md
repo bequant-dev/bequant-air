@@ -1,74 +1,188 @@
-<!-- Describe this theme/component in one or two sentences -->
+# BeQuant Discourse Theme
 
-A clean & modern theme with a handful of theme-components included to enhance your forum!
+A modern, clean Discourse theme customized for BeQuant with Material Design colors and enhanced user experience.
 
-<!-- Add screenshots (if applicable) -->
+## Features
 
-**Light Mode**
+### 🎨 **Material Design 3 Color Palette**
+- **Light Mode**: Clean, professional light theme with Material Blue accents
+- **Dark Mode**: Elegant dark theme with proper contrast and readability
+- **Consistent Branding**: BeQuant colors throughout the interface
 
-![image](https://user-images.githubusercontent.com/5862206/214545439-85410d82-9565-4e00-8b23-b2d69a0ee1eb.png)
+### 🌓 **Theme Toggle**
+- **Floating Toggle Button**: Easy access theme switcher in the top-right corner
+- **Smooth Transitions**: Beautiful animations between light and dark modes
+- **Persistent Settings**: Remembers user's theme preference
 
-**Dark Mode**
+### 🎯 **Enhanced User Experience**
+- **Modern Styling**: Rounded corners, subtle shadows, and smooth animations
+- **Better Typography**: Improved readability and visual hierarchy
+- **Responsive Design**: Works perfectly on all device sizes
+- **Accessibility**: WCAG compliant color contrasts
 
-![image](https://user-images.githubusercontent.com/5862206/214545506-f44d6165-4f79-416e-a89c-548482d04cea.png)
+### 🔧 **Built-in Components**
+- **Dark/Light Scheme Toggle**: Seamless theme switching
+- **Clickable Topics**: Enhanced topic interaction
+- **Discourse Loading Slider**: Smooth loading animations
+- **Discourse Search Banner**: Modern search experience
+- **Modern Category + Group Boxes**: Beautiful category organization
 
-**Categories Page**
+## Installation
 
-![image](https://user-images.githubusercontent.com/5862206/214545568-76d38925-55a6-4359-b1c6-bf1010706132.png)
+### Method 1: GitHub Repository (Recommended)
 
-This theme includes a handful of components to enhance your forum as well.
+1. **Fork this repository** to your GitHub account
+2. **Update the repository URL** in `about.json` to point to your fork
+3. **In your Discourse admin panel**:
+   - Go to **Admin** → **Customize** → **Themes**
+   - Click **Install** → **From a git repository**
+   - Enter your repository URL: `https://github.com/your-username/bequant-air`
+   - Click **Install**
 
-- Dark Light Scheme Toggle
-- Clickable Topics
-- Discourse Loading Slider
-- Discourse Search Banner
-- Modern Category + Group Boxes
+### Method 2: Manual Installation
 
-> :exclamation: Please read through these tips upon installation, as there are a couple of settings that **NEED TO BE ENABLED** for this to theme to render properly.
+1. **Download the theme files**
+2. **Upload to your Discourse server** in the `themes/` directory
+3. **Enable the theme** in your admin panel
+
+## Configuration
+
+### Color Schemes
+
+The theme includes two color schemes:
+
+#### BeQuant Light
+- **Primary**: Material Grey 900 (`#212121`)
+- **Secondary**: Material Grey 50 (`#fafafa`)
+- **Tertiary**: Material Blue 700 (`#1976d2`)
+- **Header**: Clean white background with blue accents
+
+#### BeQuant Dark
+- **Primary**: Material Grey 50 (`#f9fafb`)
+- **Secondary**: Material Grey 950 (`#0f172a`)
+- **Tertiary**: Material Teal 400 (`#38bdf8`)
+- **Header**: Dark slate background with teal accents
+
+### Required Settings
+
+1. **Enable Color Schemes**: 
+   - Go to **Admin** → **Customize** → **Colors**
+   - Enable both "BeQuant Light" and "BeQuant Dark"
+   - Check "Color scheme can be selected by users" for both
+
+2. **Theme Components**:
+   - The theme automatically includes modern category boxes
+   - Search banner component is pre-configured
+   - Clickable topics are enabled by default
+
+## Customization
+
+### Adding Your Own Colors
+
+To customize the colors further, edit the `about.json` file:
+
+```json
+"color_schemes": {
+  "bequant-light": {
+    "primary": "your-primary-color",
+    "secondary": "your-secondary-color",
+    "tertiary": "your-accent-color"
+  }
+}
+```
+
+### Modifying the Theme Toggle
+
+The theme toggle is located in `common/header.html`. You can:
+- Change the position by modifying the CSS in `common/common.scss`
+- Update the icons by replacing the SVG elements
+- Modify the animation behavior in the JavaScript section
+
+### Styling Enhancements
+
+All custom styling is in `common/common.scss`. Key sections:
+- **Theme Toggle**: Lines 645-700
+- **BeQuant Branding**: Lines 702-710
+- **Material Design Buttons**: Lines 712-730
+- **Enhanced Forms**: Lines 732-740
+- **Card Styling**: Lines 742-750
+
+## Browser Support
+
+- **Chrome**: 90+
+- **Firefox**: 88+
+- **Safari**: 14+
+- **Edge**: 90+
+
+## Development
+
+### Prerequisites
+- Node.js 16+
+- Ruby 2.7+
+- Discourse development environment
+
+### Setup
+```bash
+# Clone the repository
+git clone https://github.com/your-username/bequant-air.git
+cd bequant-air
+
+# Install dependencies
+npm install
+
+# Build the theme
+npm run build
+```
+
+### Making Changes
+1. **SCSS Changes**: Edit files in `scss/` and `common/`
+2. **JavaScript**: Modify the script in `common/header.html`
+3. **Colors**: Update `about.json` color schemes
+4. **Test**: Use Discourse's theme development tools
+
+## Troubleshooting
+
+### Theme Not Loading
+- Check that all files are properly uploaded
+- Verify the repository URL in admin panel
+- Check Discourse logs for errors
+
+### Theme Toggle Not Working
+- Ensure both color schemes are enabled
+- Check browser console for JavaScript errors
+- Verify localStorage is enabled
+
+### Styling Issues
+- Clear browser cache
+- Check for CSS conflicts with other themes
+- Verify SCSS compilation
+
+## Contributing
+
+1. **Fork the repository**
+2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit your changes**: `git commit -m 'Add amazing feature'`
+4. **Push to the branch**: `git push origin feature/amazing-feature`
+5. **Open a Pull Request**
+
+## License
+
+This theme is based on the [discourse-air theme](https://github.com/discourse/discourse-air) and is licensed under the GPL-2.0 license.
+
+## Support
+
+For support and questions:
+- **GitHub Issues**: Create an issue in this repository
+- **BeQuant Support**: Contact support@bequant.dev
+- **Discourse Community**: Ask in the [Discourse Meta](https://meta.discourse.org/) community
+
+## Credits
+
+- **Original Theme**: [discourse-air](https://github.com/discourse/discourse-air) by Jordan Vidrine
+- **Material Design**: Google's Material Design 3 system
+- **Icons**: Feather Icons
+- **Customization**: BeQuant Team
 
 ---
 
-# Tips
-
-### Dark Light Scheme Toggle
-
-![image](https://user-images.githubusercontent.com/5862206/214545622-af847fa5-b4ae-4308-9fe2-ddd66eb62cc8.png)
-
-For this to work properly, at least 2 color scheme choices need to be enabled in your `https://discourse.jordanvidrine.com/admin/customize/colors` area. At least two colors need to have `color scheme can be selected by users` enabled.
-
-![image](https://user-images.githubusercontent.com/5862206/214545647-e0544474-b6bf-4b9c-8c64-6a8bfa6ba83a.png)
-
-Once this is done, users should be able to choose between two color schemes as their `light` and `dark` preferences in their user preferences interface menu.
-
-![image](https://user-images.githubusercontent.com/5862206/214545707-170a6b88-8ccd-4d31-af59-f0834a4fad3c.png)
-
----
-
-## Discourse Search Banner
-
-In the options for the `discourse-search-banner` theme component, the `plugin-outlet` options needs to be set to **BELOW-SITE-HEADER** for this theme to render properly.
-
-![image](https://user-images.githubusercontent.com/5862206/214545774-ed8f1322-9a95-4958-bba0-adf7ff6dea3f.png)
-
----
-
-## Modern Category + Group Boxes
-
-This theme component requires your categories to use the **CATEGORY BOXES WITH SUBCATEGORIES** setting in your `/admin/site_settings/category/all_results?filter=categories` area.
-
-![image](https://user-images.githubusercontent.com/5862206/214545903-c4bd61b9-1893-48e0-84e7-502efc26c46d.png)
-
-This theme component also allows the forum admin to organize their category page with header titles, and choose which categories appear under each header. To keep things simple, I have only allowed up to 5 headings to be used. **If no categories + heading settings are chosen, all categories will render as they do above, this is the default rendering option.**
-
----
-
-Feel free to post any issues here :grinning_face_with_smiling_eyes:
-
-I hope you enjoy!
-
-|                     |                              |                                                                                                                             |
-| ------------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| :eyeglasses:        | **Preview**                  | https://discourse.jordanvidrine.com/                                                                                        |
-| :hammer_and_wrench: | **Repository**               | https://github.com/discourse/discourse-air.git                                                                              |
-| :question:          | **Install Guide**            | [How to install a theme or theme component](https://meta.discourse.org/t/how-do-i-install-a-theme-or-theme-component/63682) |
-| :open_book:         | **New to Discourse Themes?** | [Beginner’s guide to using Discourse Themes](https://meta.discourse.org/t/beginners-guide-to-using-discourse-themes/91966)  |
+**Made with ❤️ for the BeQuant community** 
