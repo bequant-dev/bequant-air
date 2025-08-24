@@ -639,59 +639,79 @@ html body #main-outlet {
   padding-left: 14px;
 }
 
-// BeQuant Theme Toggle Styling
-.bequant-theme-toggle {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
+// BeQuant Theme Toggle Styling - Integrated into Header
+.bequant-theme-toggle-btn {
+  background: var(--tertiary) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  margin-right: 0.5rem !important;
+  position: relative !important;
+  z-index: 1000 !important;
   
-  .theme-toggle-btn {
-    background: var(--tertiary);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    
-    &:hover {
-      background: var(--tertiary-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-    
-    svg {
-      width: 20px;
-      height: 20px;
-      transition: all 0.2s ease;
-    }
-    
+  &:hover {
+    background: var(--tertiary-hover) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  }
+  
+  &:active {
+    transform: translateY(0) !important;
+  }
+  
+  svg {
+    width: 18px !important;
+    height: 18px !important;
+    transition: all 0.2s ease !important;
+    stroke: currentColor !important;
+  }
+  
+  .sun-icon {
+    display: none !important;
+  }
+  
+  .moon-icon {
+    display: block !important;
+  }
+  
+  &.dark-mode {
     .sun-icon {
-      display: none;
+      display: block !important;
     }
     
     .moon-icon {
-      display: block;
+      display: none !important;
     }
+  }
+}
+
+// Ensure the button is visible in the header
+.d-header .header-buttons {
+  display: flex !important;
+  align-items: center !important;
+  
+  .bequant-theme-toggle-btn {
+    order: -1 !important; // Place it first
+  }
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+  .bequant-theme-toggle-btn {
+    width: 36px !important;
+    height: 36px !important;
     
-    &.dark-mode {
-      .sun-icon {
-        display: block;
-      }
-      
-      .moon-icon {
-        display: none;
-      }
+    svg {
+      width: 16px !important;
+      height: 16px !important;
     }
   }
 }

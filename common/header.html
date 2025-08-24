@@ -1,8 +1,15 @@
 <div class="background-container"></div>
 
-<!-- BeQuant Theme Toggle -->
-<div class="bequant-theme-toggle">
-  <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle theme">
+<!-- BeQuant Theme Toggle - Integrated into Discourse Header -->
+<script>
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Create theme toggle button
+  const themeToggle = document.createElement('button');
+  themeToggle.id = 'bequant-theme-toggle';
+  themeToggle.className = 'bequant-theme-toggle-btn';
+  themeToggle.setAttribute('aria-label', 'Toggle theme');
+  themeToggle.innerHTML = `
     <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -17,8 +24,113 @@
     <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
     </svg>
-  </button>
-</div>
+  `;
+
+  // Insert into Discourse header - Multiple fallback methods
+  let inserted = false;
+  
+  // Method 1: Try to insert into header-buttons
+  const headerButtons = document.querySelector('.d-header .header-buttons');
+  if (headerButtons) {
+    headerButtons.insertBefore(themeToggle, headerButtons.firstChild);
+    inserted = true;
+  }
+  
+  // Method 2: Try to insert into header-links
+  if (!inserted) {
+    const headerLinks = document.querySelector('.d-header .header-links');
+    if (headerLinks) {
+      headerLinks.appendChild(themeToggle);
+      inserted = true;
+    }
+  }
+  
+  // Method 3: Try to insert into header-panel
+  if (!inserted) {
+    const headerPanel = document.querySelector('.d-header .header-panel');
+    if (headerPanel) {
+      headerPanel.appendChild(themeToggle);
+      inserted = true;
+    }
+  }
+  
+  // Method 4: Fallback - append to header directly
+  if (!inserted) {
+    const header = document.querySelector('.d-header');
+    if (header) {
+      header.appendChild(themeToggle);
+      inserted = true;
+    }
+  }
+  
+  // Method 5: Last resort - append to body
+  if (!inserted) {
+    document.body.appendChild(themeToggle);
+    // Add fixed positioning for body fallback
+    themeToggle.style.position = 'fixed';
+    themeToggle.style.top = '1rem';
+    themeToggle.style.right = '1rem';
+    themeToggle.style.zIndex = '9999';
+  }
+
+  const sunIcon = themeToggle.querySelector('.sun-icon');
+  const moonIcon = themeToggle.querySelector('.moon-icon');
+  
+  // Get current theme from Discourse or default to light
+  function getCurrentTheme() {
+    // Check if Discourse has a color scheme set
+    const colorScheme = document.documentElement.getAttribute('data-theme');
+    if (colorScheme === 'dark') {
+      return 'bequant-dark';
+    }
+    return 'bequant-light';
+  }
+  
+  // Set initial state
+  updateThemeDisplay(getCurrentTheme());
+  
+  // Handle theme toggle
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = getCurrentTheme();
+    const newTheme = currentTheme === 'bequant-light' ? 'bequant-dark' : 'bequant-light';
+    
+    // Update Discourse theme
+    updateDiscourseTheme(newTheme);
+    
+    // Update display
+    updateThemeDisplay(newTheme);
+  });
+  
+  function updateThemeDisplay(theme) {
+    if (theme === 'bequant-dark') {
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+      themeToggle.classList.add('dark-mode');
+    } else {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+      themeToggle.classList.remove('dark-mode');
+    }
+  }
+  
+  function updateDiscourseTheme(theme) {
+    // Use Discourse's built-in color scheme system
+    const colorSchemeId = theme === 'bequant-dark' ? 'bequant-dark' : 'bequant-light';
+    
+    // Trigger Discourse's color scheme change
+    const event = new CustomEvent('color-scheme-change', { 
+      detail: { colorSchemeId: colorSchemeId } 
+    });
+    document.dispatchEvent(event);
+    
+    // Also try to update the data attribute
+    document.documentElement.setAttribute('data-theme', theme === 'bequant-dark' ? 'dark' : 'light');
+    
+    // Store preference
+    localStorage.setItem('discourse-color-scheme', colorSchemeId);
+  }
+});
+</script>
 
 <script>
 // Theme toggle functionality
