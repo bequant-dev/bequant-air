@@ -1,16 +1,9 @@
 <div class="background-container"></div>
 
-<!-- BeQuant Theme Toggle - Always Visible Fallback -->
-<div id="bequant-theme-toggle-fallback" style="position: fixed; top: 20px; right: 20px; z-index: 10000; background: #1976d2; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-size: 20px;">
-  🌓
-</div>
-
 <!-- BeQuant Theme Toggle - Integrated into Discourse Header -->
 <script>
-// Theme toggle functionality with debugging
+// Theme toggle functionality
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('BeQuant Theme Toggle: Initializing...');
-  
   // Create theme toggle button
   const themeToggle = document.createElement('button');
   themeToggle.id = 'bequant-theme-toggle';
@@ -39,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Method 1: Try to insert into header-buttons
   const headerButtons = document.querySelector('.d-header .header-buttons');
   if (headerButtons) {
-    console.log('BeQuant Theme Toggle: Inserting into header-buttons');
     headerButtons.insertBefore(themeToggle, headerButtons.firstChild);
     inserted = true;
   }
@@ -48,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!inserted) {
     const headerLinks = document.querySelector('.d-header .header-links');
     if (headerLinks) {
-      console.log('BeQuant Theme Toggle: Inserting into header-links');
       headerLinks.appendChild(themeToggle);
       inserted = true;
     }
@@ -58,7 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!inserted) {
     const headerPanel = document.querySelector('.d-header .header-panel');
     if (headerPanel) {
-      console.log('BeQuant Theme Toggle: Inserting into header-panel');
       headerPanel.appendChild(themeToggle);
       inserted = true;
     }
@@ -68,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!inserted) {
     const header = document.querySelector('.d-header');
     if (header) {
-      console.log('BeQuant Theme Toggle: Inserting into header directly');
       header.appendChild(themeToggle);
       inserted = true;
     }
@@ -76,22 +65,13 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Method 5: Last resort - append to body
   if (!inserted) {
-    console.log('BeQuant Theme Toggle: Inserting into body as fallback');
     document.body.appendChild(themeToggle);
     // Add fixed positioning for body fallback
     themeToggle.style.position = 'fixed';
     themeToggle.style.top = '1rem';
     themeToggle.style.right = '1rem';
     themeToggle.style.zIndex = '9999';
-    inserted = true;
   }
-
-  if (!inserted) {
-    console.error('BeQuant Theme Toggle: Failed to insert button anywhere!');
-    return;
-  }
-
-  console.log('BeQuant Theme Toggle: Button inserted successfully');
 
   const sunIcon = themeToggle.querySelector('.sun-icon');
   const moonIcon = themeToggle.querySelector('.moon-icon');
@@ -111,11 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Handle theme toggle
   themeToggle.addEventListener('click', function() {
-    console.log('BeQuant Theme Toggle: Button clicked');
     const currentTheme = getCurrentTheme();
     const newTheme = currentTheme === 'bequant-light' ? 'bequant-dark' : 'bequant-light';
-    
-    console.log('BeQuant Theme Toggle: Switching from', currentTheme, 'to', newTheme);
     
     // Update Discourse theme
     updateDiscourseTheme(newTheme);
@@ -140,8 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Use Discourse's built-in color scheme system
     const colorSchemeId = theme === 'bequant-dark' ? 'bequant-dark' : 'bequant-light';
     
-    console.log('BeQuant Theme Toggle: Updating to color scheme:', colorSchemeId);
-    
     // Trigger Discourse's color scheme change
     const event = new CustomEvent('color-scheme-change', { 
       detail: { colorSchemeId: colorSchemeId } 
@@ -153,40 +128,53 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Store preference
     localStorage.setItem('discourse-color-scheme', colorSchemeId);
+  }
+});
+</script>
+
+<script>
+// Theme toggle functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const sunIcon = themeToggle.querySelector('.sun-icon');
+  const moonIcon = themeToggle.querySelector('.moon-icon');
+  
+  // Get current theme from localStorage or default to light
+  const currentTheme = localStorage.getItem('discourse-theme') || 'bequant-light';
+  
+  // Set initial state
+  updateThemeDisplay(currentTheme);
+  
+  // Handle theme toggle
+  themeToggle.addEventListener('click', function() {
+    const currentTheme = localStorage.getItem('discourse-theme') || 'bequant-light';
+    const newTheme = currentTheme === 'bequant-light' ? 'bequant-dark' : 'bequant-light';
     
-    // Force page reload to ensure theme change takes effect
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
+    // Update localStorage
+    localStorage.setItem('discourse-theme', newTheme);
+    
+    // Update Discourse theme
+    updateDiscourseTheme(newTheme);
+    
+    // Update display
+    updateThemeDisplay(newTheme);
+  });
+  
+  function updateThemeDisplay(theme) {
+    if (theme === 'bequant-dark') {
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+    } else {
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+    }
   }
   
-  console.log('BeQuant Theme Toggle: Initialization complete');
-});
-
-// Fallback button functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const fallbackButton = document.getElementById('bequant-theme-toggle-fallback');
-  if (fallbackButton) {
-    console.log('BeQuant Theme Toggle: Fallback button found');
-    
-    fallbackButton.addEventListener('click', function() {
-      console.log('BeQuant Theme Toggle: Fallback button clicked');
-      
-      // Get current theme
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      
-      console.log('BeQuant Theme Toggle: Switching from', currentTheme, 'to', newTheme);
-      
-      // Update theme
-      document.documentElement.setAttribute('data-theme', newTheme);
-      
-      // Store preference
-      localStorage.setItem('discourse-theme', newTheme);
-      
-      // Force reload to apply changes
-      window.location.reload();
-    });
+  function updateDiscourseTheme(theme) {
+    // This will be handled by Discourse's built-in theme system
+    // The theme toggle will work with Discourse's color scheme selector
+    const event = new CustomEvent('theme-change', { detail: { theme: theme } });
+    document.dispatchEvent(event);
   }
 });
 </script>
